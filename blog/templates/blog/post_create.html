@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+    {% block title %} Создать пост {% endblock %}
+    {% block description %}Создание поста{% endblock %}
+    {% block content %}
+        <form method="post" enctype='multipart/form-data'>
+        {% csrf_token %}
+            <div class="container px-4 px-lg-5">
+                {{ form|crispy }}
+            </div>
+            <div class="d-grid gap-2 container px-4 px-lg-5">
+                <button type="submit" value="Save" class="btn btn-primary">Сохранить</button>
+            </div>
+        </form>
+    {% endblock %}
+
+
+
+

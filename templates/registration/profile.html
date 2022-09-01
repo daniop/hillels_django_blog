@@ -1,0 +1,29 @@
+{% extends "blog/base.html" %}
+    {% block title %} Мой профиль {% endblock %}
+    {% block description %}Мой профиль{% endblock %}
+
+{% block content %}
+    <div class="container px-4 px-lg-5">
+        <hr>
+        <h4 align="center"><a class="link-info" href="{% url 'blog:post_by_auth' object.id %}">Мои посты</a></h4>
+        <hr>
+        <div class="text-center">
+        {% if object.profile_photo %}
+            <img src="{{ object.profile_photo.url }}" class="img-fluid" alt="My image">
+        {% endif %}
+        </div>
+        {% if object.first_name %}
+            <p>Имя: {{ object.first_name }}</p>
+        {% endif %}
+        {% if object.first_name %}
+            <p>Фамилия: {{ object.last_name }}</p>
+        {% endif %}
+        <p>Почта: {{ object.email }}</p>
+        {% if object.description %}
+            Обо мне: <p>{{ object.description }}</p>
+        {% endif %}
+        <div class="d-grid gap-2 container px-4 px-lg-5">
+            <button type="submit" value="Save" class="btn btn-primary"><a class="card-link" href="{% url "update_profile" %}">Обновить профиль</a></button>
+        </div>
+    </div>
+{% endblock %}

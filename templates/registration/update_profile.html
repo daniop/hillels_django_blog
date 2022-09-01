@@ -1,0 +1,26 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+    {% block title %} Обновить профиль {% endblock %}
+    {% block description %}Обновление профиля{% endblock %}
+{% block content %}
+        <form method="post" enctype='multipart/form-data'>
+        {% csrf_token %}
+            <div class="container px-4 px-lg-5">
+                {{form| crispy}}
+            </div>
+            <div class="d-grid gap-2 container px-4 px-lg-5">
+                <button type="submit" class="btn btn-primary">Изменить</button>
+                <p><a href="{% url 'password_change' %}" class="btn btn-outline-secondary">Поменять пароль</a></p>
+            </div>
+        </form>
+{#  <form method="POST" class="form-group">#}
+{#    {% csrf_token %}#}
+{#    <table>#}
+{#      {{ form.as_table }}#}
+{#    </table>#}
+{#    <button type="submit" class="btn btn-success">Именить профиль</button>#}
+{#    <p><a href="{% url 'password_change' %}" class="btn btn-info">Поменять пароль</a></p>#}
+{#  </form>#}
+
+{% endblock %}

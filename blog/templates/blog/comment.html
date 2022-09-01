@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Add a comment{% endblock %}
+{% block description %}Ваш комментарий на рассмотрении{% endblock %}
+
+{% block content %}
+  {% if comment %}
+      <div class="d-grid gap-2 container px-4 px-lg-5">
+          <h2 align="center">Ваш комментарий скоро будет добавлен</h2>
+          <p align="center"><a href="{{ post.get_absolute_url }}">Вернуться к посту</a></p>
+      </div>
+  {% else %}
+    {% include "blog/comment_form.html" %}
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+
+    {% block title %} Профиль пользователя {{ object.username }} {% endblock %}
+    {% block description %}Профиль пользователя {{ object.username }}{% endblock %}
+
+{% block content %}
+    <div class="container px-4 px-lg-5">
+        <h1 align="center">Профиль пользователя {{ object.username }}</h1>
+        <div class="text-center">
+        {% if object.profile_photo %}
+            <img src="{{ object.profile_photo.url }}" class="img-fluid" alt="My image">
+        {% endif %}
+        </div>
+        </div>
+        {% if object.first_name %}
+            <p>Имя: {{ object.first_name }}</p>
+        {% endif %}
+        {% if object.first_name %}
+            <p>Фамилия: {{ object.last_name }}</p>
+        {% endif %}
+        <p>Почта: {{ object.email }}</p>
+        {% if object.description %}
+            Обо мне: <p>{{ object.description }}</p>
+        {% endif %}
+        <p>Всего <a href="{% url 'blog:post_by_auth' object.id %}">{{ total_posts }}</a> постов</p>
+    </div>
+{% endblock %}

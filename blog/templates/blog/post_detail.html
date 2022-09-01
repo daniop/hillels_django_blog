@@ -1,0 +1,57 @@
+{% extends "blog/base.html" %}
+{% load blog_extras %}
+{% load crispy_forms_filters %}
+
+    {% block title %}{{ post.title }}{% endblock %}
+    {% block description %}
+        {{ post.title }}
+    {% endblock %}
+    {% block content %}
+
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="text-center">
+                            {% if object.post_image %}
+                                <img src="{{ object.post_image.url }}" class="img-fluid" alt="My image">
+                            {% endif %}
+                        </div>
+                        <span class="meta">Posted by <a href='{% url 'blog:post_by_auth' post.author.id %}'>{{ post.author }}</a> on {{ post.publish }}</span>
+                        <hr>
+                        {{ post.short_description|convert_markdown|safe }}
+                        <hr>
+                        <br>
+                        {{ post.body|convert_markdown|safe }}
+                        <br>
+                        <hr>
+                        {% if post.author_id == user.pk %}
+                            <div class="card text-center">
+                              <div class="card-body">
+                                <a class="card-link" href="{% url 'blog:post_update' post.id %}">Редактировать пост</a>
+                                <a class="card-link" href="{% url 'blog:post_delete' post.id %}">Удалить пост</a>
+                              </div>
+                            </div>
+                        {% endif %}
+                        <hr>
+                        <h2>Всего {{ total_comments }} комментария</h2>
+                        <hr>
+                        {% for comment in page_obj %}
+                            <div class="comment">
+                                <p class="info">
+                                Comment {{ forloop.counter }} by {{ comment.name }}
+                                {{ comment.created }}
+                                </p>
+                                {{ comment.body|convert_markdown|safe }}
+                            </div>
+                            <hr>
+                        {% empty %}
+                            <p>Еще нет комментариев</p>
+                        {% endfor %}
+                        {% include "blog/pagination.html" %}
+                        {% include "blog/comment_form.html" %}
+                    </div>
+                </div>
+            </div>
+        </article>
+{% endblock %}

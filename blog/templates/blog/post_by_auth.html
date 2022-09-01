@@ -1,0 +1,43 @@
+{% extends "blog/base.html" %}
+{% load blog_extras %}
+{% load crispy_forms_filters %}
+    {% block title %} Посты {{ author.username }} {% endblock %}
+    {% block description %}Все посты автора {{ author.username }}{% endblock %}
+
+    {% block content %}
+        <div class="card text-center">
+          <div class="card-body">
+            <a href="{% url 'blog:author_profile' author.id %}">Профиль {{ author.username }}</a>
+          </div>
+        </div>
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                        {% for post in page_obj %}
+                        <div class="post-preview text-center">
+                            <a href="{{ post.get_absolute_url }}">
+                                <h2 class="post-title">{{ post.title }}</h2>
+                                <h3 class="post-subtitle">{{ post.short_description|convert_markdown|safe }}</h3>
+                            </a>
+                            <div class="text-center">
+                                {% if post.post_image %}
+                                    <img src="{{ post.post_image.url }}" class="img-fluid" alt="My image">
+                                {% endif %}
+                            </div>
+                            <p class="post-meta">
+                                Posted by
+                                <a href="{% url 'blog:post_by_auth' post.author.id %}">{{ post.author }}</a>
+                                {{ post.publish }} {{ post.status }}
+                            </p>
+                        </div>
+                        <hr>
+                    {% endfor %}
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <!-- Pager-->
+                    {% include "blog/pagination.html" %}
+                </div>
+            </div>
+        </div>
+        {% endblock %}
