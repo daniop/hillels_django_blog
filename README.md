@@ -6,6 +6,7 @@
 - Markdown
 - comment system
 - email notification via celery
+- deployed on heroku and S3
 
 ### Данные для заполнения каталога в fixtures.json:
 `./manage.py loaddata fixtures.json`
