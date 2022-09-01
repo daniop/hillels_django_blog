@@ -54,6 +54,7 @@ MIDDLEWARE = [
 
 ]
 
+DATABASES = {}
 ROOT_URLCONF = 'hillels_django_blog.urls'
 
 TEMPLATES = [
