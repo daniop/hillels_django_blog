@@ -28,7 +28,6 @@ flake8-builtins==1.5.3
 flake8-django==1.1.2
 flake8-import-order==0.18.1
 flake8-print==5.0.0
-graphviz==0.20
 gunicorn==20.1.0
 hiredis==2.0.0
 idna==3.3
