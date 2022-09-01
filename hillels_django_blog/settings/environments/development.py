@@ -1,5 +1,3 @@
-import os
-
 from hillels_django_blog.settings.components.common import (
     INSTALLED_APPS,
     MIDDLEWARE,
@@ -27,17 +25,6 @@ INSTALLED_APPS += (
     'django_extensions',
     "debug_toolbar",
 )
-
-# Static and media files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    'blog/static',
-]
-
-MEDIA_ROOT = os.path.join('media')
-MEDIA_URL = 'media/'
 
 # Django debug toolbar:
 # https://django-debug-toolbar.readthedocs.io

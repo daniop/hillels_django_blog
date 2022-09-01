@@ -130,3 +130,11 @@ MESSAGE_TAGS = {
 AUTHENTICATION_BACKENDS = (
   'django.contrib.auth.backends.ModelBackend',
 )
+
+MEDIA_ROOT = os.path.join('media')
+MEDIA_URL = 'media/'
+
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    'blog/static',
+]
