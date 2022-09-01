@@ -142,4 +142,5 @@ cython_debug/
 
 # staticfiles
 staticfiles/
-media/
+
+.DS_Store

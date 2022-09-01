@@ -1,3 +1,5 @@
+import os
+
 from hillels_django_blog.settings.components.common import (
     INSTALLED_APPS,
     MIDDLEWARE,
@@ -22,7 +24,7 @@ ALLOWED_HOSTS = []
 # Installed apps for development only:
 
 INSTALLED_APPS += (
-    'django_extensions',
+    "django_extensions",
     "debug_toolbar",
 )
 
@@ -48,3 +50,12 @@ CACHES = {
 
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
+
+MEDIA_ROOT = os.path.join('media')
+MEDIA_URL = '/media/'
+
+# URL
+
+SCHEMA = 'http'
+
+DOMAIN = "127.0.0.1:8000"

@@ -41,20 +41,21 @@ INSTALLED_APPS = [
     'widget_tweaks',
     "crispy_forms",
     "crispy_bootstrap5",
+
+    'storages',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
 ]
 
-DATABASES = {}
 ROOT_URLCONF = 'hillels_django_blog.urls'
 
 TEMPLATES = [
@@ -131,10 +132,10 @@ AUTHENTICATION_BACKENDS = (
   'django.contrib.auth.backends.ModelBackend',
 )
 
-MEDIA_ROOT = os.path.join('media')
-MEDIA_URL = 'media/'
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     'blog/static',
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

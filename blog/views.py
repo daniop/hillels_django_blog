@@ -167,7 +167,7 @@ class UpdateProfile(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView)
     fields = ["first_name", "last_name", "email", "username", "description", "profile_photo"]
     template_name = "registration/update_profile.html"
     success_url = reverse_lazy("blog:posts")
-    success_message = "Profile updated"
+    success_message = "Профиль обновлен"
 
     def get_object(self, queryset=None):
         user = self.request.user

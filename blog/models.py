@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
@@ -61,8 +62,8 @@ class Post(models.Model):
         link = self.get_absolute_url()
         if self.status == 'published':
             message = f'Новый пост. Название: {self.title} автора {self.author}. ' \
-                      f'Ссылка на пост: http://127.0.0.1:8000{link}'
-            new_post.delay("New comment", message)
+                      f'Ссылка на пост: {settings.SCHEMA}://{settings.DOMAIN}{link}'
+            new_post.delay("New post", message)
 
 
 class Comment(models.Model):
@@ -90,5 +91,5 @@ class Comment(models.Model):
         link = self.post.get_absolute_url()
         if self.active:
             message = f'У вас новый комментарий к посту {self.post.title} от {self.name}' \
-                      f'Ссылка на пост: http://127.0.0.1:8000{link}'
+                      f'Ссылка на пост: {settings.SCHEMA}://{settings.DOMAIN}{link}'
             comment_active.delay("New comment", self.post.author.email, message)
